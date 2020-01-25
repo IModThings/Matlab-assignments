@@ -59,33 +59,14 @@ Y_scaled=Y.*W
 
 %% Question 7
 load('student_grades.mat')
-
+L2=length(StudentGrades)
+for ii=1:L2
+  credithours=StudentGrades(ii).grades{:,2}
+  grades=StudentGrades(ii).grades{:,3}
+  cgpa=sum(grades)/sum(credithours);
+  StudentGrades(ii).cgpa=cgpa;
+  end
 
 %% Save Outputs
-%rngSeed = rng;
-save('rngSeed.mat', 'rngSeed')
-save('outputs.mat', 'z', 'seriesSum', 'A', 'B', 'C', 'D', 'values', 'Yscaled', 'StudentGrades')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+load('rngSeed.mat')
+save('outputs.mat', 'seriesSum', 'A', 'B', 'C', 'V_i', 'Y_scaled', 'StudentGrades')
