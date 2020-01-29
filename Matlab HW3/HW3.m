@@ -105,7 +105,12 @@ temp = [100:10:1000]';
 pressure = [100:10:1000]';
 RC = 0.2870;
 
-volume = (RC.*temp)./pressure
+[T,P] = meshgrid(temp,pressure);
+volume = (RC.*T)./P;
+scatter(T,volume)
+hold on
+scatter(P,volume)
+
 %problem 6
 %===============================================================================
 zeros(size(a))
