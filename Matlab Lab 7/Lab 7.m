@@ -25,6 +25,7 @@ title('Lab 7 Task 1')
 xlabel('Time')
 ylabel('Temperature (C)')
 legend('Time','Interpolated','Polynomial fit');
+MSE
 
 %{
 dew_point = [8.1,7.7,7.1,5.7,5.6,5.1,5.0,3.9,5.7,6.4,6.7,7.1,8.5,8.9,8.5,8.8,8.3,7.2,6.7,6.6,7.6,5.9,6.5,6.6];
@@ -39,7 +40,7 @@ MSE = zeros(1,9);
 for N = 1:9
   P = polyfit(time_even, temp_even, N);
   temp_int_odd = polyval(P,time_odd);
-  MSE(N) = sum((temp_int_odd - temp_odd).^2)/length(temp_odd)
+  MSE(N) = sum((temp_int_odd - temp_odd).^2)/length(temp_odd);
 endfor
 figure(2)
 plot(1:9, MSE);
@@ -60,8 +61,36 @@ title('Hourly temp variation')
 xlabel('Time')
 ylabel('Temp (C)')
 legend('True','Nearest neighbor interpolation')
+MSE
 
 %Task 4
+temp_int = zeros(1,24);
+temp_int((0:2:22)+1)=temp_even;
 
+for i = [1:2:21]
+  temp_int(i+1)=(temp_int(i)+temp_int(i+2))/2;
+endfor
+temp_int(23+1) = temp_int(22+1);
+MSE = sum((temp_int - temp).^2)/length(temp_odd);
+figure(4)
+plot(0:23,temp,'-b',0:23,temp_int,'-r');
+title('Hourly temp Variation')
+xlabel('Time')
+ylabel('Temperature (C)')
+legend('True','Local linear interpolation');
+MSE
 
+%Task 5
+temp_int_odd = spline(time_even, temp_even, time_odd);
+temp_int_odd(12) = temp_even(12);
+MSE = sum((temp_int_odd - temp_odd).^2)/length(temp_odd);
 
+temp_int = zeros(1,24);
+temp_int(1:2:23) = temp_even;
+temp_int(2:2:24) = temp_int_odd;
+figure(5)
+plot(0:23,temp,'-b',0:23,temp_int,'-r')
+title('Hourly temp variation')
+ylabel('degrees (C)')
+legend('True','Cubic spline interpolation')
+MSE
