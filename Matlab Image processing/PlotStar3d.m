@@ -5,12 +5,12 @@ if(~isdeployed)
 end
 clear %fixes some random problems
 close
-star_coord = csvread('./Results1/data.csv');
+star_coord = csvread('./coordinates.csv');
 len=length(star_coord(:,1));
 
 x = star_coord(:,1);
 y = star_coord(:,2);
 z = randi(1000, len, 1);
-csvwrite('data.csv',[x,y,z]); %save the data
+csvwrite('coordinates2.csv',[x,y,z]); %save the data
 %scatter3(x,y,z, 'marker', '.', 'markerfacecolor', 'b')
 %rotate3d on

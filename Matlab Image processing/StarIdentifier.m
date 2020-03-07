@@ -55,7 +55,8 @@ props = regionprops(star_num, 'Area', 'Centroid');
 pixels_size = [props.Area];
 centroids = cat(1,props.Centroid);
 star_cordinates = round(vertcat(props.Centroid));
-csvwrite('data.csv',[star_cordinates, pixels_size']); %save the data
+
+csvwrite('data.csv',[star_cordinates(:,1), star_cordinates(:,2), pixels_size']); %save the data
 star_num = max(max(star_num))
 count = accumarray([props.Area]', 1);
 count = count(any(count,2),:);
@@ -71,7 +72,7 @@ ylabel("Number of Stars",'FontSize',20)
 print -dpng -color "-S1500,1500" chart.png
 
 %==================This part for producing overlayed image======================
-tic;%its so fcking slow it gets its own special timer
+%{tic;%its so fcking slow it gets its own special timer
 img = imread('./images/stars1.jpg');
 figure()
 imshow(img)
@@ -79,5 +80,6 @@ hold on
 plot(centroids(:,1),centroids(:,2),'b+')
 print -dpng -color "-S7000,6000" overlayimg.png
 toc
+%}
 %===============================================================================
 
