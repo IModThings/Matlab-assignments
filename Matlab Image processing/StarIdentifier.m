@@ -72,7 +72,8 @@ ylabel("Number of Stars",'FontSize',20)
 print -dpng -color "-S1500,1500" chart.png
 
 %==================This part for producing overlayed image======================
-%{tic;%its so fcking slow it gets its own special timer
+%{
+tic;%its so fcking slow it gets its own special timer
 img = imread('./images/stars1.jpg');
 figure()
 imshow(img)
@@ -82,4 +83,3 @@ print -dpng -color "-S7000,6000" overlayimg.png
 toc
 %}
 %===============================================================================
-
