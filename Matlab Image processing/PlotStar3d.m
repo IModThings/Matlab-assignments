@@ -12,5 +12,5 @@ x = star_coord(:,1);
 y = star_coord(:,2);
 z = randi(1000, len, 1);
 %csvwrite('coordinates2.csv',[x,y,z]); %save the data
-scatter3(x,y,z, 'marker', '.', 'markeredgecolor', 'blue')
+scatter3(x,y,z, 'marker', '+', 'markeredgecolor', 'blue')
 rotate3d on

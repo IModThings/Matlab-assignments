@@ -33,4 +33,6 @@ set(gca, 'Color', 'k');             % Change the axes background color
 set(gcf, 'Pos', [50 400 560 400]);  % Change the figure size
 xlabel('Wavelength (nm)');          % Add an x label
 ylabel('Bin counts');               % Add a y label
+set(gca, "linewidth", 6, "fontsize", 30)
+print -dpng -color "-S3000,1000" setSize1.png
 toc
